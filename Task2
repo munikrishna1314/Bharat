@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Project Management Tool</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Project Management Tool</h1>
+    </header>
+    
+    <nav>
+        <ul>
+            <li><a href="#dashboard">Dashboard</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#messages">Messages</a></li>
+            <li><a href="#profile">Profile</a></li>
+        </ul>
+    </nav>
+    
+    <section id="dashboard">
+        <h2>Dashboard</h2>
+        <!-- Display user notifications, tasks, and other relevant information -->
+    </section>
+    
+    <section id="projects">
+        <h2>Projects</h2>
+        <!-- List of projects -->
+        <ul>
+            <li>
+                <a href="#project-details">Project A</a>
+                <button onclick="assignTask('Task 1', 'User 1')">Assign Task</button>
+            </li>
+            <li>
+                <a href="#project-details">Project B</a>
+                <button onclick="assignTask('Task 2', 'User 2')">Assign Task</button>
+            </li>
+            <!-- Add more projects and tasks -->
+        </ul>
+    </section>
+    
+    <section id="project-details">
+        <h2>Project Details</h2>
+        <!-- Display project details and tasks -->
+    </section>
+    
+    <section id="messages">
+        <h2>Messages</h2>
+        <!-- Display user messages and chat functionality -->
+    </section>
+    
+    <section id="profile">
+        <h2>Profile</h2>
+        <!-- Display user profile information -->
+    </section>
+    
+    <script src="script.js"></script>
+</body>
+</html>
