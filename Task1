@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blog Builder</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin:0;
+    padding:0;
+    background-color: rgb(245, 175, 110);
+  }
+  .editor-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    padding: 20px;
+  }
+  .sidebar {
+    width: 25%;
+    padding: 10px;
+    border-right: 1px solid rgb(117, 198, 236);
+  }
+  .workspace {
+    flex-grow: 1;
+    padding: 10px;
+  }
+  .element {
+    border: 1px solid rgb(237, 133, 219);
+    margin: 10px 0;
+    padding: 10px;
+    background-color: rgb(26, 226, 100);
+  }
+  .element img,
+  .element video {
+    max-width: 100%;
+    height: auto;
+  }
+  #footer{
+            
+      position: fixed;
+      color:white;
+      bottom: 0;
+      width: 100%;
+      height:40px;
+      background:black;
+  }
+  #footer h3{
+      margin:10px;
+      text-align: center;
+      padding-bottom:5px;
+  }
+</style>
+</head>
+<body>
+  <div class="editor-container">
+    <div class="sidebar">
+      <h2>Elements</h2>
+      <div class="element" draggable="true" data-type="text">Text Element</div>
+      <div class="element" draggable="true" data-type="image">Image Element</div>
+      <div class="element" draggable="true" data-type="video">Video Element</div>
+    </div>
+    <div class="workspace" id="workspace">
+      <!-- Workspace for dropping elements -->
+    </div>
+  </div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const workspace = document.getElementById('workspace');
+
+    workspace.addEventListener('dragover', function (event) {
+      event.preventDefault();
+    });
+
+    workspace.addEventListener('drop', function (event) {
+      event.preventDefault();
+      const element = event.dataTransfer.getData('text/plain');
+      if (element) {
+        const elementType = element.split(':')[1];
+        const newElement = document.createElement('div');
+        newElement.classList.add('element');
+        
+        if (elementType === 'text') {
+          newElement.textContent = 'Text Element';
+        } else if (elementType === 'image') {
+          newElement.innerHTML = '<img src="image.jpg" alt="Image">';
+        } else if (elementType === 'video') {
+          newElement.innerHTML = '<video controls><source src="video.mp4" type="video/mp4"></video>';
+        }
+        
+        workspace.appendChild(newElement);
+      }
+    });
+
+    const elements = document.querySelectorAll('.element');
+    elements.forEach(function (element) {
+      element.addEventListener('dragstart', function (event) {
+        event.dataTransfer.setData('text/plain', `element:${element.dataset.type}`);
+      });
+    });
+  });
+</script>
+    <footer id="footer">
+       <h3>Copyrights@2023</h3>
+    </footer>
+</body>
+</html>
